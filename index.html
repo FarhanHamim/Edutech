@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>English বাংলায়</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- DaisyUI (Tailwind plugin) -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" rel="stylesheet" />
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Feather Icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+    #navbarSection, #vocabularySection, #faqSection {
+      display: none;
+    }
+    #spinner {
+      display: none;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-700">
+
+<!-- Banner Section -->
+<section id="banner" class="min-h-screen flex items-center justify-center relative px-4">
+  <div class="max-w-7xl w-full flex flex-col md:flex-row items-center justify-between">
+    <div class="w-full md:w-1/2 mb-10 md:mb-0">
+      <h1 class="text-5xl font-bold mb-4 text-blue-600">English <span class="text-black">is Easy!!</span></h1>
+      <p class="text-lg mb-4">Start your language learning journey today!</p>
+      <div class="space-y-3">
+        <input type="text" id="userName" placeholder="Enter Your Name" class="input input-bordered w-full max-w-xs" />
+        <input type="password" id="userPassword" placeholder="Enter Password" class="input input-bordered w-full max-w-xs block" />
+        <button id="loginBtn" class="btn btn-primary block">Get Started</button>
+      </div>
+    </div>
+    <div class="w-full md:w-1/2 flex justify-center">
+      <img src="https://i.ibb.co/1mL5vjJ/smiling-man.png" alt="Banner Person" class="max-w-sm rounded-lg" />
+    </div>
+  </div>
+</section>
+
+<!-- Navbar -->
+<header id="navbarSection" class="w-full bg-white border-b border-gray-200 fixed top-0 left-0 z-50">
+  <div class="navbar max-w-7xl mx-auto">
+    <div class="flex-1">
+      <a href="#" class="btn btn-ghost normal-case text-xl gap-2">
+        <img src="https://i.ibb.co/GRLf8K8/english-logo.png" alt="logo" class="w-6 h-6" />
+        <span>English বাংলায়</span>
+      </a>
+    </div>
+    <div class="flex-none">
+      <button id="faqBtn" class="btn btn-ghost gap-2" aria-label="FAQ"><i data-feather="help-circle"></i> <span>FAQ</span></button>
+      <button id="learnBtn" class="btn btn-ghost gap-2" aria-label="Learn"><i data-feather="book-open"></i> <span>Learn</span></button>
+      <button id="logoutBtn" class="btn btn-ghost gap-2" aria-label="Logout"><i data-feather="log-out"></i> <span>Logout</span></button>
+    </div>
+  </div>
+</header>
+
+<!-- Vocabulary Section -->
+<section id="vocabularySection" class="pt-24 pb-16 px-4 min-h-screen bg-white">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-center text-3xl font-bold mb-8">Let's <span class="text-blue-600">Learn Vocabularies</span></h2>
+    <div id="lessonButtonsContainer" class="flex flex-wrap gap-2 justify-center mb-8"></div>
+    <div id="defaultVocabularyText" class="text-center text-xl font-semibold text-gray-400">Select a Lesson.</div>
+    <div id="spinner" class="flex items-center justify-center"><span class="loading loading-spinner loading-lg text-blue-600"></span></div>
+    <div id="wordsContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+    <p id="noWordFoundMsg" class="text-center text-red-500 text-xl font-semibold mt-6 hidden">No Word Found</p>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section id="faqSection" class="pt-24 pb-16 px-4 bg-gray-50">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-center text-3xl font-bold mb-8">Frequently Asked Questions</h2>
+    
+    <div class="space-y-4">
+
+      <!-- 1: difference between var, let, const -->
+      <div tabindex="0" class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
+        <div class="collapse-title text-xl font-medium">
+          1. The difference between var, let, and const
+        </div>
+        <div class="collapse-content">
+          <p class="pt-2">
+            <strong>var:</strong> Function-scoped, can be re-declared and updated, hoisted but initialized as <em>undefined</em>.
+            <br/>
+            <strong>let:</strong> Block-scoped, can be updated but not re-declared within the same scope, also hoisted but not initialized.
+            <br/>
+            <strong>const:</strong> Block-scoped, cannot be updated or re-declared, must be initialized at declaration.
+          </p>
+        </div>
+      </div>
+
+      <!-- 2: difference between map, forEach, filter -->
+      <div tabindex="0" class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
+        <div class="collapse-title text-xl font-medium">
+          2. The difference between map(), forEach(), and filter()
+        </div>
+        <div class="collapse-content">
+          <p class="pt-2">
+            <strong>map():</strong> Returns a new array of transformed elements.
+            <br/>
+            <strong>forEach():</strong> Iterates over array elements, but does not return anything.
+            <br/>
+            <strong>filter():</strong> Returns a new array of elements that pass a test (predicate).
+          </p>
+        </div>
+      </div>
+
+      <!-- 3: explain arrow functions and how they differ -->
+      <div tabindex="0" class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
+        <div class="collapse-title text-xl font-medium">
+          3. Explain arrow functions and how they are different from regular functions
+        </div>
+        <div class="collapse-content">
+          <p class="pt-2">
+            Arrow functions are a concise syntax for writing functions in JavaScript. They do not bind their own <code>this</code>, 
+            arguments, or super. Instead, they capture the <code>this</code> value of the enclosing context. They are not suitable 
+            as methods on objects and cannot be used as constructors.
+          </p>
+        </div>
+      </div>
+
+      <!-- 4: how JavaScript Promises work -->
+      <div tabindex="0" class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
+        <div class="collapse-title text-xl font-medium">
+          4. How JavaScript Promises work
+        </div>
+        <div class="collapse-content">
+          <p class="pt-2">
+            A Promise in JavaScript is an object that represents the eventual completion or failure of an asynchronous operation. 
+            It has three states: pending, fulfilled, or rejected. Promises allow you to chain asynchronous actions with <code>then()</code> 
+            and handle errors with <code>catch()</code>.
+          </p>
+        </div>
+      </div>
+
+      <!-- 5: how closures work in JavaScript -->
+      <div tabindex="0" class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
+        <div class="collapse-title text-xl font-medium">
+          5. How closures work in JavaScript
+        </div>
+        <div class="collapse-content">
+          <p class="pt-2">
+            A closure is formed when an inner function captures variables from its outer function's scope. Even after the outer 
+            function has returned, the inner function retains access to those variables, allowing for private data and function factories.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-white border-t border-gray-200 py-6 mt-8">
+  <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
+    <div class="flex items-center gap-2 mb-4 md:mb-0">
+      <img src="https://i.ibb.co/GRLf8K8/english-logo.png" alt="logo" class="w-6 h-6" />
+      <span class="font-bold">English বাংলায়</span>
+      <span class="text-sm text-gray-500">Providing Ed-Tech Applications since 2025</span>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="https://facebook.com" target="_blank" class="text-gray-600 hover:text-blue-600" aria-label="Facebook"><i data-feather="facebook"></i></a>
+      <a href="https://youtube.com" target="_blank" class="text-gray-600 hover:text-red-600" aria-label="YouTube"><i data-feather="youtube"></i></a>
+      <a href="https://instagram.com" target="_blank" class="text-gray-600 hover:text-pink-600" aria-label="Instagram"><i data-feather="instagram"></i></a>
+    </div>
+  </div>
+</footer>
+
+
+<!-- Modal for Word Details -->
+<input type="checkbox" id="wordDetailModal" class="modal-toggle" />
+<div class="modal">
+  <div class="modal-box">
+    <div id="wordDetailContent"></div>
+  </div>
+</div>
+
+<!-- JavaScript -->
+<script src="app.js"></script>
+</body>
+</html>
